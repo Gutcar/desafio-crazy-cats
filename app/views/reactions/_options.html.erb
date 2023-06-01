@@ -1,0 +1,4 @@
+<% Reaction.kinds.each do |kind| %>
+    <%= button_to "#{kind}", user_reaction_path(article_id: @article.id, kind: kind), method: :post, class: "btn btn-warning me-3" %>
+<% end %>
+

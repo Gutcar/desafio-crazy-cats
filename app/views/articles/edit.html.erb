@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-lg-5">
+    <h2 class="mb-5">Editando...</h2>
+    <%= render "form", article: @article %><br>
+    <div class="d-flex justify-content-center">
+      <%= link_to "Monstar articulo", show_and_new_comment_article_path(@article), class: "btn btn-outline-primary me-3" %>
+      <%= link_to "Volver a los articulos", articles_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+</div>

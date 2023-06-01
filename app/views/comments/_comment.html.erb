@@ -1,0 +1,12 @@
+<div id="<%= dom_id comment %>">
+  <div class="card mb-3" style="width: 100%">
+    <div class="card-body">
+      <% if comment.respond_to?(:user) %>
+        <h5 class="card-title"><%= comment.user %></h5>
+      <% else %>
+        <h5 class="card-title">Anonimo</h5>
+      <% end %>
+      <p class="card-text"><%= comment.description %></p>     
+    </div>
+  </div>
+</div>

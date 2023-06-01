@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col">
+    <%= render @article %>
+    <div class="my-3">
+      <p>
+        <strong><%= Reaction.count { |i| i.kind == "Me gusta" } %></strong> Me gusta |
+        <strong><%= Reaction.count { |i| i.kind == "No me gusta" } %></strong> No me gusta
+      </p>
+      <div class="d-flex">
+        <%= render 'reactions/options' %>
+      </div>
+    </div>
+    <div class="border-bottom w-100 mb-4"></div>
+    <div class="d-flex justify-content-end">
+      <% if user_signed_in? && current_user.id == @article.user.id %>
+        <%= link_to "Editar articulo", edit_article_path(@article), class: "btn btn-warning me-3" %>
+        <%= button_to "Borrar articulo", @article, method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <%= link_to "Volver a articulos", articles_path, class: "btn btn-outline-primary mb-5" %>
+    </div>
+   </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <h5>Comentarios</h5>
+
+    <%= render 'form_comments', comment: @comment %>
+
+    <div id="comments">
+      <% all_comments = @comments + @anonymous_comments %>
+      <% sorted_comments = all_comments.sort_by { |i| i.created_at } %>
+      <% sorted_comments.reverse.each do |comment| %>
+        <%= render "comments/comment", comment: comment %>
+      <% end %>
+    </div>
+  </div>
+</div>
