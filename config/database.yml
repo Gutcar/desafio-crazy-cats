@@ -29,10 +29,10 @@ development:
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  username: postgres
+  username: 
 
   # The password associated with the postgres role (username).
-  password: 1234
+  password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -58,10 +58,10 @@ development:
 test:
   <<: *default
   database: desafio_crazy_cats_test
-  username: postgres
+  username: 
 
   # The password associated with the postgres role (username).
-  password: 1234
+  password: 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -94,6 +94,4 @@ test:
 #
 production:
   <<: *default
-  database: desafio_crazy_cats_production
-  username: desafio_crazy_cats
-  password: <%= ENV["DESAFIO_CRAZY_CATS_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
