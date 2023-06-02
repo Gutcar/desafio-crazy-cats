@@ -8,16 +8,16 @@ class ReactionsController < ApplicationController
 
         if reaction
             respond_to do |format|
-                format.html { redirect_to article_path(@article), notice: "Ya hay una reaccion" }
+                format.html { redirect_to show_and_new_comment_article_path(@article), notice: "Ya hay una reaccion" }
             end
         else
             @new_reaction = Reaction.new(user_id: @user.id, article_id: @article.id, kind: params[:kind])
             
             respond_to do |format|
                 if @new_reaction.save!
-                    format.html { redirect_to article_path(@article), notice: "#{current_user.email} has stated that it #{@new_reaction.kind} the product" }
+                    format.html { redirect_to show_and_new_comment_article_path(@article), notice: "#{current_user.name} a dado #{@new_reaction.kind} a este articulo." }
                 else
-                    format.html { redirect_to article_path(@article), status: :unprocessable_entity }
+                    format.html { redirect_to show_and_new_comment_article_path(@article), status: :unprocessable_entity }
                 end
             end
         end
